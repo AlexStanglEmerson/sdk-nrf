@@ -113,14 +113,14 @@ int net_recv_data(struct net_if *iface, struct net_pkt *pkt)
 	bin2hex(psdu, length, hex_string, HEX_STRING_LENGTH);
 
 	shell_print(uart_shell,
-		    "received: %s power: %d lqi: %u time: %llu crc: 0x%04x crcreversed: 0x%04x crcstatus: %d",
+		    "received: %s power: %d lqi: %u time: %llu crcstatus: %d crc: 0x%04x crcreversed: 0x%04x",
 		    hex_string,
 		    rssi,
 		    lqi,
 		    timestamp,
+			crc_is_ok,
 			crc,
-			crc_reversed,
-			crc_is_ok);
+			crc_reversed);
 
 	net_pkt_unref(pkt);
 
